@@ -1,0 +1,9 @@
+[submodule "yapb"]
+	path = 3rdparty/yapb
+	url = https://github.com/yapb/yapb
+[submodule "android/extras_src/extras"]
+	path = 3rdparty/extras
+	url = https://github.com/tyabus/cs16client-vgui-menus
+[submodule "3rdparty/regamelite"]
+	path = 3rdparty/regamelite
+	url = https://github.com/SDLash3D/regamelite.git
