@@ -780,9 +780,9 @@ public:
 	int Init( void );
 	int Draw( float flTime );
 	CHudMsgFunc(NVGToggle);
-
 	CHudUserCmd(NVGAdjustUp);
 	CHudUserCmd(NVGAdjustDown);
+	cvar_t *cl_crosshair_nvg;
 private:
 	int m_iAlpha;
 	cvar_t *cl_fancy_nvg;

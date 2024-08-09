@@ -1367,10 +1367,13 @@ void CHudAmmo::DrawCrosshair( float flTime )
 	// drawing
 	if ( gHUD.m_NVG.m_iFlags )
 	{
-		FillRGBABlend(WEST_XPOS, EAST_WEST_YPOS,	iLength, 1, 250, 50, 50, m_iAlpha);
-		FillRGBABlend(EAST_XPOS, EAST_WEST_YPOS,	iLength, 1, 250, 50, 50, m_iAlpha);
-		FillRGBABlend(NORTH_SOUTH_XPOS, NORTH_YPOS, 1, iLength, 250, 50, 50, m_iAlpha);
-		FillRGBABlend(NORTH_SOUTH_XPOS, SOUTH_YPOS, 1, iLength, 250, 50, 50, m_iAlpha);
+		if ( gHUD.m_NVG.cl_crosshair_nvg->value )
+		{
+			FillRGBABlend( WEST_XPOS, EAST_WEST_YPOS, iLength, 1, 250, 50, 50, m_iAlpha );
+			FillRGBABlend( EAST_XPOS, EAST_WEST_YPOS, iLength, 1, 250, 50, 50, m_iAlpha );
+			FillRGBABlend( NORTH_SOUTH_XPOS, NORTH_YPOS, 1, iLength, 250, 50, 50, m_iAlpha );
+			FillRGBABlend( NORTH_SOUTH_XPOS, SOUTH_YPOS, 1, iLength, 250, 50, 50, m_iAlpha );
+		}
 	}
 	else if ( m_bAdditive )
 	{

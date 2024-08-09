@@ -45,6 +45,7 @@ int CHudNVG::Init()
 	HOOK_COMMAND("-nvgadjust", NVGAdjustDown);
 
 	cl_fancy_nvg = CVAR_CREATE( "cl_fancy_nvg", "0", FCVAR_ARCHIVE );
+	cl_crosshair_nvg = CVAR_CREATE( "cl_crosshair_nvg", "1", FCVAR_ARCHIVE );
 
 	gHUD.AddHudElem(this);
 	m_iFlags = 0;
