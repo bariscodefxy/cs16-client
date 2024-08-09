@@ -86,14 +86,10 @@ public:
 	EXPOSE_SINGLE_INTERFACE_GLOBALVAR(className, interfaceName, versionName, __g_##className##_singleton)
 
 
-#ifdef WIN32
-	#if _MSC_VER >= 1900
-		#define EXPORT_FUNCTION __attribute__ ((dllexport))
-	#else
-		#define EXPORT_FUNCTION __declspec(dllexport)
-	#endif
+#ifdef _WIN32
+#define EXPORT_FUNCTION __declspec( dllexport )
 #else
-	#define EXPORT_FUNCTION
+#define EXPORT_FUNCTION __attribute__( ( visibility( "default" ) ) )
 #endif
 
 
