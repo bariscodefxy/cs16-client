@@ -629,11 +629,12 @@ int CHudScoreboard::MsgFunc_HealthInfo(const char* pszName, int iSize, void* pbu
 	BufferReader reader( pszName, pbuf, iSize );
 	int i = reader.ReadByte( );
 	long healthInfo = reader.ReadLong( );
-	if ( g_PlayerInfoList[i].thisplayer && g_PlayerExtraInfo[i].healthinfo > 255 )
+	g_PlayerExtraInfo[i].healthinfo = healthInfo;
+	if ( g_PlayerInfoList[i].thisplayer && g_PlayerExtraInfo[i].healthinfo > 255 && g_PlayerExtraInfo[i].healthinfo != gHUD.m_Health.m_iHealth )
 	{
+		gHUD.m_Health.m_fFade = FADE_TIME;
 		gHUD.m_Health.m_iHealth = g_PlayerExtraInfo[i].healthinfo;
 	}
-	g_PlayerExtraInfo[i].healthinfo = healthInfo;
 	return 1;
 }
 
