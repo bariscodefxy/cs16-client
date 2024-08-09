@@ -304,6 +304,8 @@ public:
 	int DrawPlayers( float listslot, int nameoffset = 0, const char *team = NULL ); // returns the ypos where it finishes drawing
 
 	void DeathMsg( int killer, int victim );
+	int MsgFunc_HealthInfo( const char *pszName, int iSize, void *pbuf );
+	int MsgFunc_Account( const char *pszName, int iSize, void *pbuf );
 	void SetScoreboardDefaults( void );
 	void GetAllPlayersInfo( void );
 
@@ -371,6 +373,8 @@ struct extra_player_info_t
 	short deaths;
 	short playerclass;
 	short teamnumber;
+	long healthinfo;
+	long account;
 	char teamname[MAX_TEAM_NAME];
 	bool has_c4;
 	bool vip;

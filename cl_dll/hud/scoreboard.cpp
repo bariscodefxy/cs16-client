@@ -47,10 +47,16 @@ int ystart, yend;
 inline int NAME_POS_START()		{ return xstart + 15; }
 inline int NAME_POS_END()		{ return xend - 210; }
 // 10 pixels gap
-inline int ATTRIB_POS_START()	{ return xend - 210; }
+inline int ATTRIB_POS_START()	{ return xend - 310; }
 inline int ATTRIB_POS_END()		{ return xend - 150; }
+// 20 pixels gap
+inline int HEALTH_POS_START()	{ return xend - 270; }
+inline int HEALTH_POS_END()		{ return xend - 210; }
+// 20 pixels gap
+inline int MONEY_POS_START()	{ return xend - 200; }
+inline int MONEY_POS_END()		{ return xend - 150; }
 // 10 pixels gap
-inline int KILLS_POS_START()	{ return xend - 140; }
+inline int KILLS_POS_START()	{ return xend - 150; }
 inline int KILLS_POS_END()		{ return xend - 110; }
 // 10 pixels gap
 inline int DEATHS_POS_START()	{ return xend - 100; }
@@ -69,6 +75,8 @@ DECLARE_COMMAND( m_Scoreboard, HideScoreboard2 )
 DECLARE_MESSAGE( m_Scoreboard, ScoreInfo )
 DECLARE_MESSAGE( m_Scoreboard, TeamInfo )
 DECLARE_MESSAGE( m_Scoreboard, TeamScore )
+DECLARE_MESSAGE( m_Scoreboard, HealthInfo )
+DECLARE_MESSAGE( m_Scoreboard, Account )
 
 int CHudScoreboard :: Init( void )
 {
@@ -83,6 +91,8 @@ int CHudScoreboard :: Init( void )
 	HOOK_MESSAGE( ScoreInfo );
 	HOOK_MESSAGE( TeamScore );
 	HOOK_MESSAGE( TeamInfo );
+	HOOK_MESSAGE( HealthInfo );
+	HOOK_MESSAGE( Account );
 
 	InitHUDData();
 
@@ -172,6 +182,8 @@ int CHudScoreboard :: DrawScoreboard( float fTime )
 		strncpy( ServerName, gHUD.m_Teamplay ? "TEAMS" : "PLAYERS", 80 );
 
 	DrawUtils::DrawHudString( NAME_POS_START(), ypos, NAME_POS_END(), ServerName, 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( HEALTH_POS_END(), ypos, 0, "HEALTH", 255, 140, 0 );
+	DrawUtils::DrawHudString( MONEY_POS_START(), ypos, MONEY_POS_END(), "MONEY", 255, 140, 0 );
 	DrawUtils::DrawHudStringReverse( KILLS_POS_END(), ypos, 0, "KILLS", 255, 140, 0 );
 	DrawUtils::DrawHudString( DEATHS_POS_START(), ypos, DEATHS_POS_END(), "DEATHS", 255, 140, 0 );
 	DrawUtils::DrawHudStringReverse( PING_POS_END(), ypos, PING_POS_START(), "PING", 255, 140, 0 );
@@ -397,6 +409,20 @@ int CHudScoreboard :: DrawPlayers( float list_slot, int nameoffset, const char *
 		else if( g_PlayerExtraInfo[best_player].vip )
 			DrawUtils::DrawHudString( ATTRIB_POS_START(), ypos, ATTRIB_POS_END(), "VIP",  r, g, b );
 
+		// draw health
+		if ( !g_PlayerExtraInfo[best_player].dead && g_PlayerExtraInfo[best_player].healthinfo > -1 )
+		{
+			DrawUtils::DrawHudNumberString( HEALTH_POS_END( ), ypos, HEALTH_POS_START( ), g_PlayerExtraInfo[best_player].healthinfo, r, g, b );
+		}
+
+		// draw money
+		if ( g_PlayerExtraInfo[best_player].account != -1 )
+		{
+			char moneyInfo[32];
+			_snprintf( moneyInfo, sizeof( moneyInfo ), "$%i", g_PlayerExtraInfo[best_player].account );
+			DrawUtils::DrawHudStringReverse( MONEY_POS_END( ), ypos, MONEY_POS_START( ), moneyInfo, r, g, b );
+		}
+
 		// draw kills (right to left)
 		DrawUtils::DrawHudNumberString( KILLS_POS_END(), ypos, KILLS_POS_START(), g_PlayerExtraInfo[best_player].frags, r, g, b );
 
@@ -598,7 +624,23 @@ void CHudScoreboard :: DeathMsg( int killer, int victim )
 	}
 }
 
+int CHudScoreboard::MsgFunc_HealthInfo(const char* pszName, int iSize, void* pbuf)
+{
+	BufferReader reader( pszName, pbuf, iSize );
+	int i = reader.ReadByte( );
+	long healthInfo = reader.ReadLong( );
+	g_PlayerExtraInfo[i].healthinfo = healthInfo;
+	return 1;
+}
 
+int CHudScoreboard::MsgFunc_Account( const char *pszName, int iSize, void *pbuf )
+{
+	BufferReader reader( pszName, pbuf, iSize );
+	int i = reader.ReadByte( );
+	long account = reader.ReadLong( );
+	g_PlayerExtraInfo[i].account = account;
+	return 1;
+}
 
 void CHudScoreboard :: UserCmd_ShowScores( void )
 {
