@@ -141,7 +141,7 @@ int CHudHealth:: MsgFunc_Health(const char *pszName,  int iSize, void *pbuf )
 	m_iFlags |= HUD_DRAW;
 
 	// Only update the fade if we've changed health
-	if (x != m_iHealth)
+	if (x != m_iHealth && x < 255)
 	{
 		m_fFade = FADE_TIME;
 		m_iHealth = x;
@@ -284,7 +284,7 @@ void CHudHealth::DrawHealthBar( float flTime )
 
 		x = CrossWidth + HealthWidth / 2;
 
-		x = DrawUtils::DrawHudNumber(x, y, DHN_3DIGITS | DHN_DRAWZERO, m_iHealth, r, g, b);
+		x = DrawUtils::DrawHudNumber2( x, y, m_iHealth, r, g, b );
 	}
 }
 
