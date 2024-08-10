@@ -37,7 +37,7 @@ void IN_Init (void);
 void IN_Move ( float frametime, usercmd_t *cmd);
 void IN_Shutdown( void );
 void V_Init( void );
-void VectorAngles( const vec_t *forward, vec_t *angles );
+void VectorAngles( const float *forward, float *angles );
 int CL_ButtonBits( int );
 
 // xxx need client dll function to get and clear impuse

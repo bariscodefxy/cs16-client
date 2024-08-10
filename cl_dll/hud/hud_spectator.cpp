@@ -26,7 +26,7 @@
 #include "screenfade.h"
 #include "draw_util.h"
 
-#ifdef _WIN32
+#ifdef MSC_VER
 #pragma warning(disable: 4244)
 #endif
 
