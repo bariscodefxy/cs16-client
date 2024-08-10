@@ -31,6 +31,7 @@
 #include "mobility_int.h"
 #include "vgui_parser.h"
 
+
 cl_enginefunc_t gEngfuncs = { };
 render_api_t gRenderAPI = { };
 mobile_engfuncs_t gMobileAPI = { };
@@ -38,6 +39,7 @@ CHud gHUD;
 int g_iXash = 0; // indicates an original xash3d buildnum
 int g_iXashFWGS = 0; // indicates an xash3d fwgs buildnum
 int g_iMobileAPIVersion = 0;
+vec3_t vec3_origin = { 0, 0, 0 };
 
 void InitInput (void);
 void Game_HookEvents( void );

@@ -50,8 +50,8 @@ void  NormalizeAngles(float *angles);
 void  InterpolateAngles(float *start, float *end, float *output, float frac);
 float AngleBetweenVectors(const vec_t *v1, const vec_t *v2);
 void VectorTransform(const vec_t *in1, float (*in2)[4], vec_t *out);
-int   VectorCompare(const vec_t *v1, const vec_t *v2);
-void  VectorMA(const vec_t *veca, float scale, const vec_t *vecb, vec_t *vecc);
+int	VectorCompare( const vec_t *v1, const vec_t *v2 );
+void VectorMA( const vec_t *veca, float scale, const vec_t *vecb, vec_t *vecc );
 
 float _DotProduct(const vec_t *v1, const vec_t *v2);
 void  _VectorSubtract(vec_t *veca, vec_t *vecb, vec_t *out);
