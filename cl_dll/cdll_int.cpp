@@ -39,7 +39,10 @@ CHud gHUD;
 int g_iXash = 0; // indicates an original xash3d buildnum
 int g_iXashFWGS = 0; // indicates an xash3d fwgs buildnum
 int g_iMobileAPIVersion = 0;
+
+#ifdef _WIN32
 vec3_t vec3_origin = { 0, 0, 0 };
+#endif
 
 void InitInput (void);
 void Game_HookEvents( void );
