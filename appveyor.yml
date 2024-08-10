@@ -1,0 +1,11 @@
+version: 1.0.{build}
+image: Visual Studio 2022
+clone_folder: c:\projects\cs16-client
+before_build:
+- cmd: git submodule update --init --recursive
+build:
+  project: c:\projects\cs16-client\projects\client.vcxproj
+  verbosity: minimal
+artifacts:
+- path: '**\client.dll'
+  name: client
