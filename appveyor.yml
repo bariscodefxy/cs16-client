@@ -1,11 +1,17 @@
 version: 1.0.{build}
 image: Visual Studio 2022
 clone_folder: c:\projects\cs16-client
+environment:
+  project_name: client
+  dll_name: client
+  matrix:
+  - project_name: mainui
+    dll_name: menu
 before_build:
 - cmd: git submodule update --init --recursive
 build:
-  project: c:\projects\cs16-client\projects\client.vcxproj
+  project: c:\projects\cs16-client\projects\%project_name%.vcxproj
   verbosity: minimal
 artifacts:
-- path: '**\client.dll'
-  name: client
+- path: '%dll_name%'
+  name: '%dll_name%'
