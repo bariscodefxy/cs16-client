@@ -13,12 +13,13 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
 
-#include "extdll.h"
-#include "basemenu.h"
-#include "utils.h"
 
-ui_enginefuncs_t	g_engfuncs;
-ui_textfuncs_t	g_textfuncs;
+#include "extdll_menu.h"
+#include "BaseMenu.h"
+#include "Utils.h"
+
+ui_enginefuncs_t EngFuncs::engfuncs;
+ui_textfuncs_t	EngFuncs::textfuncs;
 ui_globalvars_t	*gpGlobals;
 CMenu gMenu;
 
@@ -42,12 +43,6 @@ static UI_FUNCTIONS gFunctionTable =
 	UI_FinalCredits
 };
 
-#ifdef _WIN32
-#define EXPORT __declspec(dllexport)
-#else
-#define EXPORT
-#endif
-
 //=======================================================================
 //			GetApi
 //=======================================================================
@@ -60,9 +55,8 @@ extern "C" EXPORT int GetMenuAPI(UI_FUNCTIONS *pFunctionTable, ui_enginefuncs_t*
 
 	// copy HUD_FUNCTIONS table to engine, copy engfuncs table from engine
 	memcpy( pFunctionTable, &gFunctionTable, sizeof( UI_FUNCTIONS ));
-	memcpy( &g_engfuncs, pEngfuncsFromEngine, sizeof( ui_enginefuncs_t ));
-	memset( &g_textfuncs, 0, sizeof( ui_textfuncs_t ));
-
+	memcpy( &EngFuncs::engfuncs, pEngfuncsFromEngine, sizeof( ui_enginefuncs_t ));
+	memset( &EngFuncs::textfuncs, 0, sizeof( ui_textfuncs_t ));
 	gpGlobals = pGlobals;
 
 	return TRUE;
@@ -76,13 +70,7 @@ extern "C" EXPORT int GiveTextAPI( ui_textfuncs_t* pTextfuncsFromEngine )
 	}
 
 	// copy HUD_FUNCTIONS table to engine, copy engfuncs table from engine
-	memcpy( &g_textfuncs, pTextfuncsFromEngine, sizeof( ui_textfuncs_t ));
+	memcpy( &EngFuncs::textfuncs, pTextfuncsFromEngine, sizeof( ui_textfuncs_t ));
 
 	return TRUE;
 }
-
-extern "C" EXPORT void AddTouchButtonToList( const char *name, const char *texture, const char *command, unsigned char *color, int flags )
-{
-	UI_TouchButtons_AddButtonToList( name, texture, command, color, flags );
-}
-

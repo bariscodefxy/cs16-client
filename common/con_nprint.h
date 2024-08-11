@@ -27,7 +27,11 @@ typedef struct con_nprint_s
 	float	color[ 3 ];		// RGB colors ( 0.0 -> 1.0 scale )
 } con_nprint_t;
 
-void Con_NPrintf( int idx, char *fmt, ... );
-void Con_NXPrintf( struct con_nprint_s *info, char *fmt, ... );
+#ifndef Con_NPrintf
+#define Con_NPrintf ( *EngFuncs::engfuncs.Con_NPrintf )
+#endif
+#ifndef Con_NXPrintf
+#define Con_NXPrintf ( *EngFuncs::engfuncs.Con_NXPrintf )
+#endif
 
 #endif

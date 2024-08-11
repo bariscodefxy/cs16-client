@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -9,67 +9,269 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\mainui\basemenu.h" />
-    <ClInclude Include="..\mainui\enginecallback.h" />
-    <ClInclude Include="..\mainui\extdll.h" />
-    <ClInclude Include="..\mainui\menufont.h" />
-    <ClInclude Include="..\mainui\menu_btnsbmp_table.h" />
-    <ClInclude Include="..\mainui\menu_strings.h" />
-    <ClInclude Include="..\mainui\ui_title_anim.h" />
-    <ClInclude Include="..\mainui\utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\mainui\basemenu.cpp" />
-    <ClCompile Include="..\mainui\legacy\menu_playdemo.cpp" />
-    <ClCompile Include="..\mainui\legacy\menu_playrec.cpp" />
-    <ClCompile Include="..\mainui\legacy\menu_recdemo.cpp" />
-    <ClCompile Include="..\mainui\menu_advcontrols.cpp" />
-    <ClCompile Include="..\mainui\menu_audio.cpp" />
-    <ClCompile Include="..\mainui\menu_btns.cpp" />
-    <ClCompile Include="..\mainui\menu_configuration.cpp" />
-    <ClCompile Include="..\mainui\menu_controls.cpp" />
-    <ClCompile Include="..\mainui\menu_creategame.cpp" />
-    <ClCompile Include="..\mainui\menu_credits.cpp" />
-    <ClCompile Include="..\mainui\menu_filedialog.cpp" />
-    <ClCompile Include="..\mainui\menu_gameoptions.cpp" />
-    <ClCompile Include="..\mainui\menu_internetgames.cpp" />
-    <ClCompile Include="..\mainui\menu_langame.cpp" />
-    <ClCompile Include="..\mainui\menu_main.cpp" />
-    <ClCompile Include="..\mainui\menu_multiplayer.cpp" />
-    <ClCompile Include="..\mainui\menu_playersetup.cpp" />
-    <ClCompile Include="..\mainui\menu_strings.cpp" />
-    <ClCompile Include="..\mainui\menu_touch.cpp" />
-    <ClCompile Include="..\mainui\menu_touchbuttons.cpp" />
-    <ClCompile Include="..\mainui\menu_touchedit.cpp" />
-    <ClCompile Include="..\mainui\menu_touchoptions.cpp" />
-    <ClCompile Include="..\mainui\menu_vidoptions.cpp" />
+    <ClCompile Include="..\mainui\BaseMenu.cpp" />
+    <ClCompile Include="..\mainui\Btns.cpp" />
+    <ClCompile Include="..\mainui\CFGScript.cpp" />
+    <ClCompile Include="..\mainui\controls\Action.cpp" />
+    <ClCompile Include="..\mainui\controls\BackgroundBitmap.cpp" />
+    <ClCompile Include="..\mainui\controls\BaseClientWindow.cpp" />
+    <ClCompile Include="..\mainui\controls\BaseItem.cpp" />
+    <ClCompile Include="..\mainui\controls\BaseWindow.cpp" />
+    <ClCompile Include="..\mainui\controls\Bitmap.cpp" />
+    <ClCompile Include="..\mainui\controls\CheckBox.cpp" />
+    <ClCompile Include="..\mainui\controls\Editable.cpp" />
+    <ClCompile Include="..\mainui\controls\Field.cpp" />
+    <ClCompile Include="..\mainui\controls\Framework.cpp" />
+    <ClCompile Include="..\mainui\controls\ItemsHolder.cpp" />
+    <ClCompile Include="..\mainui\controls\MessageBox.cpp" />
+    <ClCompile Include="..\mainui\controls\PicButton.cpp" />
+    <ClCompile Include="..\mainui\controls\PlayerModelView.cpp" />
+    <ClCompile Include="..\mainui\controls\ProgressBar.cpp" />
+    <ClCompile Include="..\mainui\controls\ScrollView.cpp" />
+    <ClCompile Include="..\mainui\controls\Slider.cpp" />
+    <ClCompile Include="..\mainui\controls\SpinControl.cpp" />
+    <ClCompile Include="..\mainui\controls\Switch.cpp" />
+    <ClCompile Include="..\mainui\controls\Table.cpp" />
+    <ClCompile Include="..\mainui\controls\TabView.cpp" />
+    <ClCompile Include="..\mainui\controls\YesNoMessageBox.cpp" />
+    <ClCompile Include="..\mainui\EngineCallback.cpp" />
+    <ClCompile Include="..\mainui\EventSystem.cpp" />
+    <ClCompile Include="..\mainui\font\BaseFontBackend.cpp" />
+    <ClCompile Include="..\mainui\font\BitmapFont.cpp" />
+    <ClCompile Include="..\mainui\font\FontManager.cpp" />
+    <ClCompile Include="..\mainui\font\FreeTypeFont.cpp" />
+    <ClCompile Include="..\mainui\font\StbFont.cpp" />
+    <ClCompile Include="..\mainui\font\WinAPIFont.cpp" />
+    <ClCompile Include="..\mainui\MenuStrings.cpp" />
+    <ClCompile Include="..\mainui\menus\AdvancedControls.cpp" />
+    <ClCompile Include="..\mainui\menus\Audio.cpp" />
+    <ClCompile Include="..\mainui\menus\Configuration.cpp" />
+    <ClCompile Include="..\mainui\menus\ConnectionProgress.cpp" />
+    <ClCompile Include="..\mainui\menus\ConnectionWarning.cpp" />
+    <ClCompile Include="..\mainui\menus\Controls.cpp" />
+    <ClCompile Include="..\mainui\menus\CreateGame.cpp" />
+    <ClCompile Include="..\mainui\menus\Credits.cpp" />
+    <ClCompile Include="..\mainui\menus\CustomGame.cpp" />
+    <ClCompile Include="..\mainui\menus\dynamic\ScriptMenu.cpp" />
+    <ClCompile Include="..\mainui\menus\FileDialog.cpp" />
+    <ClCompile Include="..\mainui\menus\GameOptions.cpp" />
+    <ClCompile Include="..\mainui\menus\Gamepad.cpp" />
+    <ClCompile Include="..\mainui\menus\InputDevices.cpp" />
+    <ClCompile Include="..\mainui\menus\LoadGame.cpp" />
+    <ClCompile Include="..\mainui\menus\Main.cpp" />
+    <ClCompile Include="..\mainui\menus\Multiplayer.cpp" />
+    <ClCompile Include="..\mainui\menus\NewGame.cpp" />
+    <ClCompile Include="..\mainui\menus\PlayerIntroduceDialog.cpp" />
+    <ClCompile Include="..\mainui\menus\PlayerSetup.cpp" />
+    <ClCompile Include="..\mainui\menus\SaveLoad.cpp" />
+    <ClCompile Include="..\mainui\menus\ServerBrowser.cpp" />
+    <ClCompile Include="..\mainui\menus\Touch.cpp" />
+    <ClCompile Include="..\mainui\menus\TouchButtons.cpp" />
+    <ClCompile Include="..\mainui\menus\TouchEdit.cpp" />
+    <ClCompile Include="..\mainui\menus\TouchOptions.cpp" />
+    <ClCompile Include="..\mainui\menus\Video.cpp" />
+    <ClCompile Include="..\mainui\menus\VideoModes.cpp" />
+    <ClCompile Include="..\mainui\menus\VideoOptions.cpp" />
+    <ClCompile Include="..\mainui\menus\Zoo.cpp" />
+    <ClCompile Include="..\mainui\miniutl\bitstring.cpp" />
+    <ClCompile Include="..\mainui\miniutl\generichash.cpp" />
+    <ClCompile Include="..\mainui\miniutl\strtools.cpp" />
+    <ClCompile Include="..\mainui\miniutl\utlbuffer.cpp" />
+    <ClCompile Include="..\mainui\miniutl\utlmemory.cpp" />
+    <ClCompile Include="..\mainui\miniutl\utlstring.cpp" />
+    <ClCompile Include="..\mainui\Scissor.cpp" />
     <ClCompile Include="..\mainui\udll_int.cpp" />
-    <ClCompile Include="..\mainui\ui_title_anim.cpp" />
-    <ClCompile Include="..\mainui\utils.cpp" />
+    <ClCompile Include="..\mainui\unicode_strtools.cpp" />
+    <ClCompile Include="..\mainui\Utils.cpp" />
+    <ClCompile Include="..\mainui\WindowSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\backends.h" />
+    <ClInclude Include="..\common\beamdef.h" />
+    <ClInclude Include="..\common\bspfile.h" />
+    <ClInclude Include="..\common\cl_entity.h" />
+    <ClInclude Include="..\common\com_model.h" />
+    <ClInclude Include="..\common\const.h" />
+    <ClInclude Include="..\common\con_nprint.h" />
+    <ClInclude Include="..\common\crc.h" />
+    <ClInclude Include="..\common\cvardef.h" />
+    <ClInclude Include="..\common\defaults.h" />
+    <ClInclude Include="..\common\demo_api.h" />
+    <ClInclude Include="..\common\director_cmds.h" />
+    <ClInclude Include="..\common\dlight.h" />
+    <ClInclude Include="..\common\dll_state.h" />
+    <ClInclude Include="..\common\engine_features.h" />
+    <ClInclude Include="..\common\engine_launcher_api.h" />
+    <ClInclude Include="..\common\entity_state.h" />
+    <ClInclude Include="..\common\entity_types.h" />
+    <ClInclude Include="..\common\event_api.h" />
+    <ClInclude Include="..\common\event_args.h" />
+    <ClInclude Include="..\common\event_flags.h" />
+    <ClInclude Include="..\common\exefuncs.h" />
+    <ClInclude Include="..\common\gameinfo.h" />
+    <ClInclude Include="..\common\hltv.h" />
+    <ClInclude Include="..\common\interface.h" />
+    <ClInclude Include="..\common\in_buttons.h" />
+    <ClInclude Include="..\common\ivoicetweak.h" />
+    <ClInclude Include="..\common\kbutton.h" />
+    <ClInclude Include="..\common\lightstyle.h" />
+    <ClInclude Include="..\common\mathlib.h" />
+    <ClInclude Include="..\common\netadr.h" />
+    <ClInclude Include="..\common\net_api.h" />
+    <ClInclude Include="..\common\nowin.h" />
+    <ClInclude Include="..\common\particledef.h" />
+    <ClInclude Include="..\common\pmtrace.h" />
+    <ClInclude Include="..\common\port.h" />
+    <ClInclude Include="..\common\qfont.h" />
+    <ClInclude Include="..\common\ref_params.h" />
+    <ClInclude Include="..\common\render_api.h" />
+    <ClInclude Include="..\common\r_efx.h" />
+    <ClInclude Include="..\common\r_studioint.h" />
+    <ClInclude Include="..\common\screenfade.h" />
+    <ClInclude Include="..\common\studio_event.h" />
+    <ClInclude Include="..\common\triangleapi.h" />
+    <ClInclude Include="..\common\usercmd.h" />
+    <ClInclude Include="..\common\wadfile.h" />
+    <ClInclude Include="..\common\weaponinfo.h" />
+    <ClInclude Include="..\common\wrect.h" />
+    <ClInclude Include="..\common\xash3d_types.h" />
+    <ClInclude Include="..\engine\anorms.h" />
+    <ClInclude Include="..\engine\archtypes.h" />
+    <ClInclude Include="..\engine\cdll_int.h" />
+    <ClInclude Include="..\engine\custom.h" />
+    <ClInclude Include="..\engine\customentity.h" />
+    <ClInclude Include="..\engine\edict.h" />
+    <ClInclude Include="..\engine\eiface.h" />
+    <ClInclude Include="..\engine\keydefs.h" />
+    <ClInclude Include="..\engine\menu_int.h" />
+    <ClInclude Include="..\engine\mobility_int.h" />
+    <ClInclude Include="..\engine\progdefs.h" />
+    <ClInclude Include="..\engine\progs.h" />
+    <ClInclude Include="..\engine\Sequence.h" />
+    <ClInclude Include="..\engine\shake.h" />
+    <ClInclude Include="..\engine\studio.h" />
+    <ClInclude Include="..\mainui\BaseMenu.h" />
+    <ClInclude Include="..\mainui\BMPUtils.h" />
+    <ClInclude Include="..\mainui\BtnsBMPTable.h" />
+    <ClInclude Include="..\mainui\CFGScript.h" />
+    <ClInclude Include="..\mainui\Color.h" />
+    <ClInclude Include="..\mainui\controls\Action.h" />
+    <ClInclude Include="..\mainui\controls\BackgroundBitmap.h" />
+    <ClInclude Include="..\mainui\controls\BaseClientWindow.h" />
+    <ClInclude Include="..\mainui\controls\BaseItem.h" />
+    <ClInclude Include="..\mainui\controls\BaseWindow.h" />
+    <ClInclude Include="..\mainui\controls\Bitmap.h" />
+    <ClInclude Include="..\mainui\controls\CheckBox.h" />
+    <ClInclude Include="..\mainui\controls\Editable.h" />
+    <ClInclude Include="..\mainui\controls\Field.h" />
+    <ClInclude Include="..\mainui\controls\Framework.h" />
+    <ClInclude Include="..\mainui\controls\ItemsHolder.h" />
+    <ClInclude Include="..\mainui\controls\MessageBox.h" />
+    <ClInclude Include="..\mainui\controls\PicButton.h" />
+    <ClInclude Include="..\mainui\controls\PlayerModelView.h" />
+    <ClInclude Include="..\mainui\controls\ProgressBar.h" />
+    <ClInclude Include="..\mainui\controls\ScrollView.h" />
+    <ClInclude Include="..\mainui\controls\Slider.h" />
+    <ClInclude Include="..\mainui\controls\SpinControl.h" />
+    <ClInclude Include="..\mainui\controls\Switch.h" />
+    <ClInclude Include="..\mainui\controls\Table.h" />
+    <ClInclude Include="..\mainui\controls\TabView.h" />
+    <ClInclude Include="..\mainui\controls\YesNoMessageBox.h" />
+    <ClInclude Include="..\mainui\Coord.h" />
+    <ClInclude Include="..\mainui\enginecallback_menu.h" />
+    <ClInclude Include="..\mainui\EventSystem.h" />
+    <ClInclude Include="..\mainui\extdll_menu.h" />
+    <ClInclude Include="..\mainui\font\BaseFontBackend.h" />
+    <ClInclude Include="..\mainui\font\BitmapFont.h" />
+    <ClInclude Include="..\mainui\font\FontManager.h" />
+    <ClInclude Include="..\mainui\font\FontRenderer.h" />
+    <ClInclude Include="..\mainui\font\FreeTypeFont.h" />
+    <ClInclude Include="..\mainui\font\StbFont.h" />
+    <ClInclude Include="..\mainui\font\stb_truetype.h" />
+    <ClInclude Include="..\mainui\font\WinAPIFont.h" />
+    <ClInclude Include="..\mainui\menufont.h" />
+    <ClInclude Include="..\mainui\MenuStrings.h" />
+    <ClInclude Include="..\mainui\menus\PlayerIntroduceDialog.h" />
+    <ClInclude Include="..\mainui\miniutl\bitstring.h" />
+    <ClInclude Include="..\mainui\miniutl\fmtstr.h" />
+    <ClInclude Include="..\mainui\miniutl\generichash.h" />
+    <ClInclude Include="..\mainui\miniutl\minbase_endian.h" />
+    <ClInclude Include="..\mainui\miniutl\miniutl.h" />
+    <ClInclude Include="..\mainui\miniutl\strtools.h" />
+    <ClInclude Include="..\mainui\miniutl\utlbuffer.h" />
+    <ClInclude Include="..\mainui\miniutl\utlhashmap.h" />
+    <ClInclude Include="..\mainui\miniutl\utllinkedlist.h" />
+    <ClInclude Include="..\mainui\miniutl\utlmap.h" />
+    <ClInclude Include="..\mainui\miniutl\utlmemory.h" />
+    <ClInclude Include="..\mainui\miniutl\utlpriorityqueue.h" />
+    <ClInclude Include="..\mainui\miniutl\utlrbtree.h" />
+    <ClInclude Include="..\mainui\miniutl\utlstring.h" />
+    <ClInclude Include="..\mainui\miniutl\utlvector.h" />
+    <ClInclude Include="..\mainui\miniutl\winlite.h" />
+    <ClInclude Include="..\mainui\model\BaseArrayModel.h" />
+    <ClInclude Include="..\mainui\model\BaseModel.h" />
+    <ClInclude Include="..\mainui\model\StringArrayModel.h" />
+    <ClInclude Include="..\mainui\Primitive.h" />
+    <ClInclude Include="..\mainui\Scissor.h" />
+    <ClInclude Include="..\mainui\unicode_strtools.h" />
+    <ClInclude Include="..\mainui\Utils.h" />
+    <ClInclude Include="..\mainui\WindowSystem.h" />
+    <ClInclude Include="..\pm_shared\pm_debug.h" />
+    <ClInclude Include="..\pm_shared\pm_defs.h" />
+    <ClInclude Include="..\pm_shared\pm_info.h" />
+    <ClInclude Include="..\pm_shared\pm_materials.h" />
+    <ClInclude Include="..\pm_shared\pm_math.h" />
+    <ClInclude Include="..\pm_shared\pm_movevars.h" />
+    <ClInclude Include="..\pm_shared\pm_shared.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{90F48F37-D9F8-4F36-B04F-1FC8CC834424}</ProjectGuid>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{46049e23-f2af-463a-85cb-d735b144ab72}</ProjectGuid>
     <RootNamespace>mainui</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -77,45 +279,74 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../engine;../common;../pm_shared</IncludePath>
+    <ExternalIncludePath>..\pm_shared;..\engine;..\common;$(ExternalIncludePath)</ExternalIncludePath>
+    <OutDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\</OutDir>
     <TargetName>menu</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../engine;../common;../pm_shared</IncludePath>
-    <TargetName>menu</TargetName>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\int\</IntDir>
+    <IncludePath>..\mainui\model;..\mainui\miniutl;..\mainui\menus;..\mainui\font;..\mainui\controls;..\mainui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>XASH_VGUI;XASH_SDL;WIN32;MAINUI_EXPORTS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>XASH_VGUI;WIN32;MAINUI_EXPORTS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

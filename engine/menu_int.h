@@ -22,6 +22,9 @@ GNU General Public License for more details.
 
 typedef int		HIMAGE;		// handle to a graphic
 
+#define PLATFORM_UPDATE_PAGE "PlatformUpdatePage"
+#define GENERIC_UPDATE_PAGE "GenericUpdatePage"
+
 // flags for PIC_Load
 #define PIC_NEAREST		(1<<0)		// disable texfilter
 #define PIC_KEEP_RGBDATA	(1<<1)		// some images keep source
@@ -161,6 +164,7 @@ typedef struct ui_enginefuncs_s
 	int	(*pfnIsMapValid)( char *filename );
 	void	(*pfnProcessImage)( int texnum, float gamma, int topColor, int bottomColor );
 	int	(*pfnCompareFileTime)( char *filename1, char *filename2, int *iCompare );
+	const char *( *pfnGetModeString )( int vid_mode );
 } ui_enginefuncs_t;
 
 typedef struct ui_textfuncs_s {
