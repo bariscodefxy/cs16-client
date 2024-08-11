@@ -13,5 +13,5 @@ build:
   project: c:\projects\cs16-client\projects\%project_name%.vcxproj
   verbosity: minimal
 artifacts:
-- path: '%dll_name%'
+- path: '**\%dll_name%.dll'
   name: '%dll_name%'
