@@ -1,5 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2022
+configuration: Release
+platform: x86
 clone_folder: c:\projects\cs16-client
 environment:
   matrix:
