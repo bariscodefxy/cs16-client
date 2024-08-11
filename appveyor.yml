@@ -2,9 +2,9 @@ version: 1.0.{build}
 image: Visual Studio 2022
 clone_folder: c:\projects\cs16-client
 environment:
-  project_name: client
-  dll_name: client
   matrix:
+  - project_name: client
+    dll_name: client
   - project_name: mainui
     dll_name: menu
 before_build:
