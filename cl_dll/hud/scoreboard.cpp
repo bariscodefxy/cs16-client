@@ -46,23 +46,23 @@ int ystart, yend;
 // relative to the side of the scoreboard
 inline int NAME_POS_START()		{ return xstart + 15; }
 inline int NAME_POS_END()		{ return xend - 210; }
-// 10 pixels gap
-inline int ATTRIB_POS_START()	{ return xend - 310; }
-inline int ATTRIB_POS_END()		{ return xend - 150; }
-// 20 pixels gap
-inline int HEALTH_POS_START()	{ return xend - 270; }
-inline int HEALTH_POS_END()		{ return xend - 210; }
-// 20 pixels gap
-inline int MONEY_POS_START()	{ return xend - 200; }
-inline int MONEY_POS_END()		{ return xend - 150; }
-// 10 pixels gap
-inline int KILLS_POS_START()	{ return xend - 150; }
-inline int KILLS_POS_END()		{ return xend - 110; }
-// 10 pixels gap
-inline int DEATHS_POS_START()	{ return xend - 100; }
-inline int DEATHS_POS_END()		{ return xend - 40; }
-// 20 pixels gap
-inline int PING_POS_START()		{ return xend - 40; }
+
+inline int ATTRIB_POS_START()	{ return xend - 420; }
+inline int ATTRIB_POS_END()		{ return xend - 360; }
+
+inline int HEALTH_POS_START()	{ return xend - 350; }
+inline int HEALTH_POS_END()		{ return xend - 290; }
+
+inline int MONEY_POS_START()	{ return xend - 280; }
+inline int MONEY_POS_END()		{ return xend - 220; }
+
+inline int KILLS_POS_START()	{ return xend - 210; }
+inline int KILLS_POS_END()		{ return xend - 150; }
+
+inline int DEATHS_POS_START()	{ return xend - 140; }
+inline int DEATHS_POS_END()		{ return xend - 80; }
+
+inline int PING_POS_START()		{ return xend - 70; }
 inline int PING_POS_END()		{ return xend - 10; }
 
 //#include "vgui_TeamFortressViewport.h"
@@ -95,8 +95,6 @@ int CHudScoreboard :: Init( void )
 	HOOK_MESSAGE( Account );
 
 	InitHUDData();
-
-	cl_showpacketloss = CVAR_CREATE( "cl_showpacketloss", "0", FCVAR_ARCHIVE );
 
 	return 1;
 }
@@ -147,7 +145,7 @@ int CHudScoreboard :: Draw( float flTime )
 			m_colors.g = 0;
 			m_colors.b = 0;
 			m_colors.a = 153;
-			m_bDrawStroke = true;
+			m_bDrawStroke = false;
 		}
 	}
 
@@ -159,12 +157,6 @@ int CHudScoreboard :: DrawScoreboard( float fTime )
 	GetAllPlayersInfo();
 	char ServerName[90];
 
-//	Packetloss removed on Kelly 'shipping nazi' Bailey's orders
-//	if ( cl_showpacketloss && cl_showpacketloss->value && ( ScreenWidth >= 400 ) )
-//	{
-//		can_show_packetloss = 1;
-//	}
-
 	// just sort the list on the fly
 	// list is sorted first by frags, then by deaths
 	float list_slot = 0;
@@ -174,23 +166,21 @@ int CHudScoreboard :: DrawScoreboard( float fTime )
 	DrawUtils::DrawRectangle(xstart, ystart, xend - xstart, yend - ystart,
 		m_colors.r, m_colors.g, m_colors.b, m_colors.a, m_bDrawStroke);
 
-	int ypos = ystart + (list_slot * ROW_GAP) + 5;
+	int ypos = ystart + (list_slot * ROW_GAP) + 10;
 
 	if( gHUD.m_szServerName[0] )
-		_snprintf(ServerName, 80, "%s SERVER: %s", (char*)(gHUD.m_Teamplay ? "TEAMS" : "PLAYERS"), gHUD.m_szServerName);
-	else
-		strncpy( ServerName, gHUD.m_Teamplay ? "TEAMS" : "PLAYERS", 80 );
+		_snprintf(ServerName, 64, "%s", gHUD.m_szServerName);
 
 	DrawUtils::DrawHudString( NAME_POS_START(), ypos, NAME_POS_END(), ServerName, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( HEALTH_POS_END(), ypos, 0, "HEALTH", 255, 140, 0 );
-	DrawUtils::DrawHudString( MONEY_POS_START(), ypos, MONEY_POS_END(), "MONEY", 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( KILLS_POS_END(), ypos, 0, "KILLS", 255, 140, 0 );
-	DrawUtils::DrawHudString( DEATHS_POS_START(), ypos, DEATHS_POS_END(), "DEATHS", 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( PING_POS_END(), ypos, PING_POS_START(), "PING", 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( HEALTH_POS_END(), ypos, 0, "HP", 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( MONEY_POS_END(), ypos, MONEY_POS_START(), "Money", 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( KILLS_POS_END(), ypos, 0, "Score", 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( DEATHS_POS_END(), ypos, DEATHS_POS_START(), "Deaths", 255, 140, 0 );
+	DrawUtils::DrawHudStringReverse( PING_POS_END(), ypos, PING_POS_START(), "Latency", 255, 140, 0 );
 
 	list_slot += 2;
 	ypos = ystart + (list_slot * ROW_GAP);
-	FillRGBA( xstart, ypos, xend - xstart, 1, 255, 140, 0, 255);  // draw the separator line
+	//FillRGBA( xstart, ypos, xend - xstart, 1, 255, 140, 0, 255);  // draw the separator line
 	
 	list_slot += 0.8;
 
@@ -316,11 +306,9 @@ int CHudScoreboard :: DrawTeams( float list_slot )
 		{
 		case TEAM_TERRORIST:
 			_snprintf(teamName, sizeof(teamName), "Terrorists   -   %i players", team_info->players);
-			DrawUtils::DrawHudNumberString( KILLS_POS_END(),  ypos, KILLS_POS_START(),  team_info->frags,  r, g, b );
 			break;
 		case TEAM_CT:
 			_snprintf(teamName, sizeof(teamName), "Counter-Terrorists   -   %i players", team_info->players);
-			DrawUtils::DrawHudNumberString( KILLS_POS_END(),  ypos, KILLS_POS_START(),  team_info->frags,  r, g, b );
 			break;
 		case TEAM_SPECTATOR:
 		case TEAM_UNASSIGNED:
@@ -328,8 +316,7 @@ int CHudScoreboard :: DrawTeams( float list_slot )
 			break;
 		}
 
-		DrawUtils::DrawHudString( NAME_POS_START(),		 ypos, NAME_POS_END(),   teamName,   r, g, b );
-		DrawUtils::DrawHudNumberString( PING_POS_END(),  ypos, PING_POS_START(),  team_info->sumping / team_info->players,  r, g, b );
+		DrawUtils::DrawHudString( NAME_POS_START(), ypos, NAME_POS_END(),   teamName,   r, g, b );
 
 		team_info->already_drawn = TRUE;  // set the already_drawn to be TRUE, so this team won't get drawn again
 

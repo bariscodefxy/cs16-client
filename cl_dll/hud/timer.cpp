@@ -94,6 +94,7 @@ int CHudTimer::Draw( float fTime )
     
     SPR_Set(gHUD.GetSprite(m_HUD_timer), r, g, b);
     SPR_DrawAdditive(0, x, y, &gHUD.GetSpriteRect(m_HUD_timer));
+	x = x + 10;
         
 	x = DrawUtils::DrawHudNumber2( x + iWatchWidth / 4, y, false, 2, minutes, r, g, b );
 	// draw :

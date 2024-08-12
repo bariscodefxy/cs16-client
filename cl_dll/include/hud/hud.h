@@ -330,7 +330,6 @@ private:
 	bool m_bDrawStroke;
 	bool m_bForceDraw; // if called by showscoreboard2
 	bool m_bShowscoresHeld;
-	cvar_t *cl_showpacketloss;
 };
 
 //
