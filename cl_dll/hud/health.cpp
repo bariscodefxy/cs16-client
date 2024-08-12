@@ -283,6 +283,7 @@ void CHudHealth::DrawHealthBar( float flTime )
 		SPR_DrawAdditive(0, x, y, &gHUD.GetSpriteRect(m_HUD_cross));
 
 		x = CrossWidth + HealthWidth / 2;
+		x = x + 10;
 
 		x = DrawUtils::DrawHudNumber2( x, y, m_iHealth, r, g, b );
 	}

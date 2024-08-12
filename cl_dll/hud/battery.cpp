@@ -131,7 +131,8 @@ int CHudBattery::Draw( float flTime )
 	}
 
 	x += (m_hEmpty[m_enArmorType].rect.right - m_hEmpty[m_enArmorType].rect.left);
-	x = DrawUtils::DrawHudNumber( x, y, DHN_3DIGITS|DHN_DRAWZERO, m_iBat, r, g, b );
+	x = x + 10;
+	x = DrawUtils::DrawHudNumber2( x, y, m_iBat, r, g, b );
 
 	return 1;
 }
