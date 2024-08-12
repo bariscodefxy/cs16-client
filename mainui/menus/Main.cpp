@@ -51,8 +51,6 @@ private:
 
 	void QuitDialog( void *pExtra = NULL );
 	void DisconnectDialogCb();
-	void HazardCourseDialogCb();
-	void HazardCourseCb();
 
 	CMenuPicButton	console;
 	class CMenuMainBanner : public CMenuBannerBitmap
@@ -67,13 +65,6 @@ private:
 	CMenuPicButton	multiPlayer;
 	CMenuPicButton	customGame;
 	CMenuPicButton	quit;
-
-	// buttons on top right. Maybe should be drawn if fullscreen == 1?
-	#if !(defined(__ANDROID__) || defined(__SAILFISH__))
-	CMenuBitmap	minimizeBtn;
-	#endif
-
-	CMenuBitmap	quitButton;
 
 	// quit dialog
 	CMenuYesNoMessageBox dialog;
@@ -123,13 +114,6 @@ void CMenuMain::DisconnectDialogCb()
 	dialog.Show();
 }
 
-void CMenuMain::HazardCourseDialogCb()
-{
-	dialog.onPositive = VoidCb( &CMenuMain::HazardCourseCb );;
-	dialog.SetMessage( L( "StringsList_234" ) );
-	dialog.Show();
-}
-
 /*
 =================
 CMenuMain::Key
@@ -151,28 +135,6 @@ bool CMenuMain::KeyDown( int key )
 		return true;
 	}
 	return CMenuFramework::KeyDown( key );
-}
-
-/*
-=================
-UI_Main_HazardCourse
-=================
-*/
-void CMenuMain::HazardCourseCb()
-{
-	if( EngFuncs::GetCvarFloat( "host_serverstate" ) && EngFuncs::GetCvarFloat( "maxplayers" ) > 1 )
-		EngFuncs::HostEndGame( L( "end of the game" ) );
-
-	EngFuncs::CvarSetValue( "skill", 1.0f );
-	EngFuncs::CvarSetValue( "deathmatch", 0.0f );
-	EngFuncs::CvarSetValue( "teamplay", 0.0f );
-	EngFuncs::CvarSetValue( "pausable", 1.0f ); // singleplayer is always allowing pause
-	EngFuncs::CvarSetValue( "coop", 0.0f );
-	EngFuncs::CvarSetValue( "maxplayers", 1.0f ); // singleplayer
-
-	EngFuncs::PlayBackgroundTrack( NULL, NULL );
-
-	EngFuncs::ClientCmd( FALSE, "hazardcourse\n" );
 }
 
 void CMenuMain::_Init( void )
@@ -221,18 +183,6 @@ void CMenuMain::_Init( void )
 	quit.iFlags |= QMF_NOTIFY;
 	quit.onReleased = MenuCb( &CMenuMain::QuitDialog );
 
-	quitButton.SetPicture( ART_CLOSEBTN_N, ART_CLOSEBTN_F, ART_CLOSEBTN_D );
-	quitButton.iFlags = QMF_MOUSEONLY;
-	quitButton.eFocusAnimation = QM_HIGHLIGHTIFFOCUS;
-	quitButton.onReleased = MenuCb( &CMenuMain::QuitDialog );
-
-	#if !(defined(__ANDROID__) || defined(__SAILFISH__))
-	minimizeBtn.SetPicture( ART_MINIMIZE_N, ART_MINIMIZE_F, ART_MINIMIZE_D );
-	minimizeBtn.iFlags = QMF_MOUSEONLY;
-	minimizeBtn.eFocusAnimation = QM_HIGHLIGHTIFFOCUS;
-	minimizeBtn.onReleased.SetCommand( FALSE, "minimize\n" );
-	#endif
-
 	dialog.Link( this );
 
 	AddItem( background );
@@ -251,12 +201,6 @@ void CMenuMain::_Init( void )
 		AddItem( customGame );
 
 	AddItem( quit );
-
-#if !(defined(__ANDROID__) || defined(__SAILFISH__))
-	AddItem( minimizeBtn );
-#endif
-
-	AddItem( quitButton );
 }
 
 /*
@@ -279,27 +223,36 @@ void CMenuMain::_VidInit( void )
 
 	if( EngFuncs::GetCvarFloat( "developer" ) )
 	{
-		console.pos.y = CL_IsActive() ? 230 : 380;
+		if ( CL_IsActive( ) && bCustomGame )
+		{
+			console.pos.y = 300;
+		}
+		else if ( ( CL_IsActive( ) && !bCustomGame ) )
+		{
+			console.pos.y = 350;
+		}
+		else if ((!CL_IsActive() && bCustomGame))
+		{
+			console.pos.y = 400;
+		}
+		else if (!CL_IsActive() && !bCustomGame)
+		{
+			console.pos.y = 450;
+		}
 	}
 
 	CMenuPicButton::ClearButtonStack();
 
-	console.pos.x = 72;
-	resumeGame.SetCoord( 72, 280 );
-	disconnect.SetCoord( 72, 330 );
+	console.pos.x = 24;
+	resumeGame.SetCoord( 24, bCustomGame ? 350 : 400 );
+	disconnect.SetCoord( 24, bCustomGame ? 400 : 450 );
 
-	configuration.SetCoord( 72, 430 );
-	multiPlayer.SetCoord( 72, 480 );
+	configuration.SetCoord( 24, bCustomGame ? 450 : 500 );
+	multiPlayer.SetCoord( 24, bCustomGame ? 500 : 550 );
 
-	customGame.SetCoord( 72, 530 );
+	customGame.SetCoord( 24, 550 );
 
-	quit.SetCoord( 72, (bCustomGame) ? 580 : 530 );
-
-#if !(defined(__ANDROID__) || defined(__SAILFISH__))
-	minimizeBtn.SetRect( uiStatic.width - 72, 13, 32, 32 );
-#endif
-
-	quitButton.SetRect( uiStatic.width - 36, 13, 32, 32 );
+	quit.SetCoord( 24, 600 );
 }
 
 /*

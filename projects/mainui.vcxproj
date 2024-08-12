@@ -249,7 +249,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -292,6 +292,13 @@
     <TargetName>menu</TargetName>
     <IntDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\int\</IntDir>
     <IncludePath>..\mainui\model;..\mainui\miniutl;..\mainui\menus;..\mainui\font;..\mainui\controls;..\mainui;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>menu</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\int\</IntDir>
+    <IncludePath>..\mainui\model;..\mainui\miniutl;..\mainui\menus;..\mainui\font;..\mainui\controls;..\mainui;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>..\pm_shared;..\engine;..\common;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

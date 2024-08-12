@@ -497,9 +497,12 @@ bool CMenuPicButton::DrawTitleAnim( CMenuBaseWindow::EAnimation state )
 
 	Quad c;
 
-	if( transition_state == AS_TO_TITLE )
+	/*if( transition_state == AS_TO_TITLE )
 		c = LerpQuad( s_CurrentLerpQuads[0], s_CurrentLerpQuads[1], frac );
 	else if( transition_state == AS_TO_BUTTON )
+		c = LerpQuad( s_CurrentLerpQuads[1], s_CurrentLerpQuads[0], frac );*/
+
+	if( transition_state == AS_TO_BUTTON )
 		c = LerpQuad( s_CurrentLerpQuads[1], s_CurrentLerpQuads[0], frac );
 
 	//UI_FillRect( c.x, c.y, c.lx, c.ly, 0xFF0F00FF );
