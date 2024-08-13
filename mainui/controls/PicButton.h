@@ -58,9 +58,7 @@ public:
 
 	static void RootChanged( bool isForward );
 private:
-#ifdef CS16CLIENT
 	bool bRollOver;
-#endif
 
 	enum animState_e { AS_TO_TITLE = 0, AS_TO_BUTTON };
 	struct Quad

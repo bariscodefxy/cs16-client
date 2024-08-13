@@ -288,14 +288,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExternalIncludePath>..\pm_shared;..\engine;..\common;$(ExternalIncludePath)</ExternalIncludePath>
-    <OutDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\</OutDir>
+    <OutDir>..\..\..\xash\cstrike\cl_dlls</OutDir>
     <TargetName>menu</TargetName>
     <IntDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\int\</IntDir>
     <IncludePath>..\mainui\model;..\mainui\miniutl;..\mainui\menus;..\mainui\font;..\mainui\controls;..\mainui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>menu</TargetName>
-    <OutDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\</OutDir>
+    <OutDir>..\..\..\xash\cstrike\cl_dlls</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\$(ShortProjectName)\int\</IntDir>
     <IncludePath>..\mainui\model;..\mainui\miniutl;..\mainui\menus;..\mainui\font;..\mainui\controls;..\mainui;$(IncludePath)</IncludePath>
     <ExternalIncludePath>..\pm_shared;..\engine;..\common;$(VC_IncludePath);$(WindowsSDK_IncludePath);</ExternalIncludePath>

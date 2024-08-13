@@ -153,11 +153,6 @@ bool CMenuFramework::DrawAnimation()
 {
 	bool b = CMenuBaseWindow::DrawAnimation( );
 
-#ifndef CS16CLIENT
-	if( IsRoot() )
-		b = CMenuPicButton::DrawTitleAnim( eTransitionType );
-#endif
-
 	return b;
 }
 

@@ -25,6 +25,9 @@ GNU General Public License for more details.
 #define SCALE_FONTS
 #endif
 
+#define MAINUI_USE_CUSTOM_FONT_RENDER
+#define MAINUI_USE_STB
+
 struct charRange_t
 {
 	int chMin;

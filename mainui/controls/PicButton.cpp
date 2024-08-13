@@ -126,7 +126,6 @@ void CMenuPicButton::Draw( )
 {
 	int state = BUTTON_NOFOCUS;
 
-#ifdef CS16CLIENT
 	if( UI_CursorInRect( m_scPos, m_scSize ) &&
 		m_pParent && m_pParent->IsVisible() )
 	{
@@ -141,7 +140,6 @@ void CMenuPicButton::Draw( )
 		if( bRollOver )
 			bRollOver = false;
 	}
-#endif // CS16CLIENT
 
 	if( iFlags & (QMF_HASMOUSEFOCUS|QMF_HASKEYBOARDFOCUS))
 	{
@@ -154,22 +152,6 @@ void CMenuPicButton::Draw( )
 
 	if( iOldState == BUTTON_NOFOCUS && state != BUTTON_NOFOCUS )
 		iFocusStartTime = uiStatic.realTime;
-
-#ifndef CS16CLIENT
-	if( szStatusText && iFlags & QMF_NOTIFY )
-	{
-		Point coord;
-
-		coord.x = m_scPos.x + 290 * uiStatic.scaleX;
-		coord.y = m_scPos.y + m_scSize.h / 2 - EngFuncs::ConsoleCharacterHeight() / 2;
-
-		int	r, g, b;
-
-		UnpackRGB( r, g, b, uiColorHelp );
-		EngFuncs::DrawSetTextColor( r, g, b );
-		EngFuncs::DrawConsoleString( coord, szStatusText );
-	}
-#endif
 
 	int a = (512 - (uiStatic.realTime - m_iLastFocusTime)) >> 1;
 

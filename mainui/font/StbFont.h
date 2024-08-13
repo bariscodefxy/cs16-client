@@ -62,4 +62,4 @@ private:
 	friend class CFontManager;
 };
 
-#endif // defined(MAINUI_USE_CUSTOM_FONT_RENDER) && defined(MAINUI_USE_FREETYPE)
+#endif

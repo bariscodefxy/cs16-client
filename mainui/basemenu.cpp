@@ -44,17 +44,10 @@ cvar_t		*ui_language;
 uiStatic_t	uiStatic;
 static CMenuEntry	*s_pEntries = NULL;
 
-#ifdef CS16CLIENT
 const char	*uiSoundIn			= "";
 const char	*uiSoundOut         = "";
 const char	*uiSoundLaunch      = "sound/UI/buttonclickrelease.wav";
 const char	*uiSoundRollOver	= "sound/UI/buttonrollover.wav";
-#else
-const char	*uiSoundIn			= "media/launch_upmenu1.wav";
-const char	*uiSoundOut			= "media/launch_dnmenu1.wav";
-const char	*uiSoundLaunch		= "media/launch_select2.wav";
-const char	*uiSoundRollOver	= "";
-#endif
 const char	*uiSoundGlow        = "media/launch_glow1.wav";
 const char	*uiSoundBuzz        = "media/launch_deny2.wav";
 const char	*uiSoundKey         = "media/launch_select1.wav";

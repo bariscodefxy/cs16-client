@@ -21,13 +21,8 @@ enum EFontFlags
 #define UI_MED_CHAR_WIDTH		13
 #define UI_MED_CHAR_HEIGHT		26
 
-#ifdef CS16CLIENT
 #define UI_BIG_CHAR_WIDTH		25
 #define UI_BIG_CHAR_HEIGHT		50
-#else
-#define UI_BIG_CHAR_WIDTH		20
-#define UI_BIG_CHAR_HEIGHT		40
-#endif
 
 enum EFontSizes
 {

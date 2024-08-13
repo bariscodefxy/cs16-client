@@ -29,15 +29,9 @@ GNU General Public License for more details.
 
 #include "BitmapFont.h"
 
-#if defined __ANDROID__ || defined CS16CLIENT
 #define DEFAULT_MENUFONT "RobotoCondensed"
 #define DEFAULT_CONFONT  "DroidSans"
-#define DEFAULT_WEIGHT   1000
-#else
-#define DEFAULT_MENUFONT "Trebuchet MS"
-#define DEFAULT_CONFONT  "Tahoma"
-#define DEFAULT_WEIGHT   500
-#endif
+#define DEFAULT_WEIGHT   100
 
 CFontManager g_FontMgr;
 

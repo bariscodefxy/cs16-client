@@ -12,6 +12,10 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 */
+
+#define MAINUI_USE_CUSTOM_FONT_RENDER
+#define MAINUI_USE_STB
+
 #if defined(MAINUI_USE_STB)
 #include <stdarg.h>
 
@@ -223,7 +227,7 @@ bool CStbFont::FindFontDataFile(const char *name, int tall, int weight, int flag
 	if( !strcmp( name, "Arial" ) )
 		snprintf( dataFile, dataFileChars, "%s\\Fonts\\arial.ttf", getenv( "WINDIR" ) );
 	else
-		snprintf( dataFile, dataFileChars, "%s\\Fonts\\trebucbd.ttf", getenv( "WINDIR" ) );
+		snprintf( dataFile, dataFileChars, "stratum2-medium-webfont.ttf" );
 	return true;
 #else
 	// strcpy( dataFile, "/usr/share/fonts/truetype/droid/DroidSans.ttf");
@@ -257,7 +261,7 @@ bool CStbFont::Create(const char *name, int tall, int weight, int blur, float br
 
 
 	// EngFuncs::COM_LoadFile does not allow open files from /
-	FILE *fd = fopen( m_szRealFontFile, "r" );
+	FILE *fd = fopen( m_szRealFontFile, "rb" );
 	if( !fd )
 	{
 		Con_DPrintf( "Unable to open font %s!\n", m_szRealFontFile );
