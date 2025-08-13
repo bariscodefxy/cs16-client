@@ -1,3 +1,6 @@
+# [DEPRECATED! LOOK HERE!](https://git.bariscodefx.tr/physic3d/game-sdk/cs16-client)
+This is deprecated project, I'm developing this under Physic3D! https://git.bariscodefx.tr/physic3d/game-sdk/cs16-client
+
 # CS16Client
 New cs16 client based on old FWGS repository (v1.33).
 
